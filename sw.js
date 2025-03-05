@@ -1,5 +1,5 @@
 //Evento fetch actualiza la aplicacion
-self.addEventListener('fetch', (e) => {
+self.addEventListener('fetch', e => {
     e.responseWith(
         caches.match(e.request).then((res) => {
             if (res) {
