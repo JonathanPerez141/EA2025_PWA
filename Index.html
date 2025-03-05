@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Landing Page</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#10095">
+  <meta name="MobileOptimized" content="true">
+  <meta name="mobile-web-app-capable" content="yes">
+
+  <!-- meta etiquetas PWA para Apple -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobil-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-touch-icon" content="ppublic/portafolio.png">
+  <meta name="apple-touch-startup-image" content="public/portafolio.png">
+  <script src="/js/main.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const track = document.querySelector(".carousel-track");
+      const prevButton = document.querySelector(".carousel-button.prev");
+      const nextButton = document.querySelector(".carousel-button.next");
+      const images = document.querySelectorAll(".carousel img");
+
+      let currentIndex = 0;
+
+      // Función para mover el carrusel
+      function moveCarousel() {
+        const imageWidth = images[0].clientWidth;
+        track.style.transform = `translateX(-${currentIndex * imageWidth}px)`;
+      }
+
+      // Evento para el botón "Siguiente"
+      nextButton.addEventListener("click", () => {
+        if (currentIndex < images.length - 1) {
+          currentIndex++;
+        } else {
+          currentIndex = 0; // Reinicia al inicio
+        }
+        moveCarousel();
+      });
+
+      // Evento para el botón "Anterior"
+      prevButton.addEventListener("click", () => {
+        if (currentIndex > 0) {
+          currentIndex--;
+        } else {
+          currentIndex = images.length - 1; // Mueve al final
+        }
+        moveCarousel();
+      });
+
+      // Ajustar el carrusel al redimensionar la ventana
+      window.addEventListener("resize", moveCarousel);
+
+      // Mover el carrusel al cargar la página
+      moveCarousel();
+    });
+  </script>
+</head>
+<body>
+  <header>
+    <h1>Jonathan Jaciel Pérez Moncayo</h1>
+    <p>Futuro Ingeniero en Desarrollo y Gestión de Software</p>
+  </header>
+
+  <div class="container">
+    <!-- Proyectos -->
+    <section class="projects">
+      <h2>Proyectos Destacados</h2>
+      <ul>
+        <li>Desarrollo de "Soul Quest: Academy of Knowledge" (2024) - Juego de preguntas y respuestas.</li>
+        <li>Desarrollo de Aplicación Móvil del Proyecto "SmartTank"</li>
+        <li>Tester de un Gestor de Reportes de Producción</li>
+      </ul>
+    </section>
+
+    <!-- Carrusel de Imágenes -->
+    <section class="visuals">
+      <h2>Imágenes Destacadas</h2>
+      <div class="carousel">
+        <div class="carousel-track">
+          <img src="/img/Soul_Quest.jpg" alt="Soul Quest">
+          <img src="/img/SmartTank.jpg" alt="SmartTank">
+          <img src="/img/genesis_manufacturing_services_cover.jpg" alt="Genesis Manufacturing Services">
+        </div>
+        <button class="carousel-button prev">&#10094;</button>
+        <button class="carousel-button next">&#10095;</button>
+      </div>
+    </section>
+
+    <!-- Llamada a la acción -->
+    <section class="cta">
+      <a href="#" onclick="showMoreInfo()">Saber más</a>
+    </section>
+
+    <!-- Formulario de Contacto -->
+    <section class="form" id="contact">
+      <h2>Contáctanos</h2>
+      <form action="mailto:jonathan9662@outlook.com" method="post" enctype="text/plain">
+        <label for="name">Nombre:</label>
+        <input type="text" id="name" name="name" placeholder="Tu nombre" required>
+        <label for="email">Correo Electrónico:</label>
+        <input type="email" id="email" name="email" placeholder="Tu correo" required>
+
+        <label for="message">Mensaje:</label>
+        <textarea id="message" name="message" rows="5" placeholder="Tu mensaje"></textarea>
+
+        <button type="submit">Enviar</button>
+      </form>
+    </section>
+  </div>
+</body>
+</html>
